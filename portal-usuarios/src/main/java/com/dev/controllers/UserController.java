@@ -19,8 +19,7 @@ import javax.inject.Named;
  */
 
 @Component
-@ManagedBean
-@SessionScoped
+@Scope("session")
 public class UserController {
 
     @Autowired
