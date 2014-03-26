@@ -21,25 +21,25 @@
     <context:property-placeholder properties-ref="applicationProps" ignore-resource-not-found="true" />
 
 
-    <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"
-          destroy-method="close" p:driverClass="${app.jdbc.driverClassName}"
-          p:jdbcUrl="${app.jdbc.url}" p:user="${app.jdbc.username}" p:password="${app.jdbc.password}"
-          p:acquireIncrement="10" p:idleConnectionTestPeriod="60" p:maxPoolSize="50"
-          p:maxStatements="50" p:minPoolSize="5"
-            />
+    <!--<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource"-->
+          <!--destroy-method="close" p:driverClass="${app.jdbc.driverClassName}"-->
+          <!--p:jdbcUrl="${app.jdbc.url}" p:user="${app.jdbc.username}" p:password="${app.jdbc.password}"-->
+          <!--p:acquireIncrement="10" p:idleConnectionTestPeriod="60" p:maxPoolSize="50"-->
+          <!--p:maxStatements="50" p:minPoolSize="5"-->
+            <!--/>-->
 
-    <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"
-          p:dataSource-ref="dataSource"
-            />
+    <!--<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager"-->
+          <!--p:dataSource-ref="dataSource"-->
+            <!--/>-->
 
-    <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"
-          p:dataSource-ref="dataSource"
-          p:configLocation="classpath:mybatis-config.xml"
-          p:typeAliasesPackage="com.dev.domain.model"
-            />
+    <!--<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean"-->
+          <!--p:dataSource-ref="dataSource"-->
+          <!--p:configLocation="classpath:mybatis-config.xml"-->
+          <!--p:typeAliasesPackage="com.dev.domain.model"-->
+            <!--/>-->
 
 
-    <mybatis:scan base-package="com.dev.domain.mapper" factory-ref="sqlSessionFactory" annotation="org.springframework.stereotype.Repository"/>
+    <!--<mybatis:scan base-package="com.dev.domain.mapper" factory-ref="sqlSessionFactory" annotation="org.springframework.stereotype.Repository"/>-->
 
 
 </beans>

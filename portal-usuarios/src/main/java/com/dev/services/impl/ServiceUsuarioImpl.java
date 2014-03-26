@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Service
 public class ServiceUsuarioImpl implements ServiceUsuario {
-    @Autowired
+    //@Autowired
     private UsuarioMapper usuarioMapper;
 
     @Override
