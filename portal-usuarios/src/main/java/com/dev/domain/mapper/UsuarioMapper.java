@@ -1,6 +1,8 @@
 package com.dev.domain.mapper;
 
+import com.dev.domain.model.Filtro;
 import com.dev.domain.model.Usuario;
+import com.dev.domain.model.UsuarioDetalle;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -16,4 +18,8 @@ import java.util.List;
 public interface UsuarioMapper {
 
     public List<Usuario> getAll();
+    public List<Usuario> getUsuario(Filtro filtro);
+    public UsuarioDetalle getUsuarioDetalle(int idUsuario);
+
+
 }

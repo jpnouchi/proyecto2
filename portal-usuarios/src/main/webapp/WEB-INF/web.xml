@@ -11,6 +11,14 @@
 
     <display-name>portal-usuarios</display-name>
 
+    <!-- Spring Context Configuration' s Path definition -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath*:/applicationContext.xml
+        </param-value>
+    </context-param>
+
     <!-- Add Support for Spring -->
     <listener>
         <listener-class>
@@ -22,6 +30,11 @@
             org.springframework.web.context.request.RequestContextListener
         </listener-class>
     </listener>
+
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
 
     <!-- Change to "Production" when you are ready to deploy -->
     <context-param>

@@ -6,22 +6,55 @@
 
 
     <resultMap id="resultUsuario" type="usuario">
-        <result property="IdUsuario" column="IdUsuario"/>
-        <result property="idError" column="Nombres"/>
-        <result property="rucProveedor" column="ApellidoPaterno"/>
-        <result property="numeroDocumento" column="ApellidoMaterno"/>
+        <result property="idUsuario" column="idUsuario"/>
+        <result property="nombres" column="nombres"/>
+        <result property="apellidoMaterno" column="apellidoMaterno"/>
+        <result property="apellidoPaterno" column="apellidoPaterno"/>
+        <result property="sexo" column="sexo"/>
     </resultMap>
 
 
     <select id="getAll"  fetchSize="10"  resultMap="resultUsuario">
-        select	IdUsuario
-            ,	Nombres
-            ,	ApellidoPaterno
-            ,	ApellidoMaterno
-        from	USUARIO
+        select	idUsuario
+            ,	nombres
+            ,	apellidoPaterno
+            ,	apellidoMaterno
+        from	usuario
     </select>
 
+    <select id="getUsuario"  fetchSize="10"  resultMap="resultUsuario" parameterType="filtro">
+        select	idUsuario
+            ,	nombres
+            ,	apellidoPaterno
+            ,	apellidoMaterno
+        from	usuario
+        <where>
+            <if test=" nombre!=null and nombre!='' ">
+                 nombres like #{nombre}
+               or apellidoPaterno  like #{nombre}
+               or apellidoMaterno  like #{nombre}
+            </if>
 
+        </where>
+    </select>
 
+    <resultMap id="resultUsuarioDetalle" type="usuarioDetalle">
+        <result property="idUsuarioDetalle" column="idUsuarioDetalle"/>
+        <result property="idUsuario" column="idUsuario"/>
+        <result property="correo" column="correo"/>
+        <result property="imagen" column="imagen"/>
+    </resultMap>
+
+    <select id="getUsuarioDetalle"  fetchSize="10"  resultMap="resultUsuarioDetalle" parameterType="int">
+        select
+                idUsuarioDetalle
+            ,   idUsuario
+            ,	correo
+            ,	imagen
+        from	UsuarioDetalle
+        <where>
+            idUsuario = #{idUsuario}
+        </where>
+    </select>
 
 </mapper>
