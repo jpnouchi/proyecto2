@@ -60,15 +60,15 @@
                         <f:facet name="header">
                             <p:graphicImage value="#{userController.usuarioDetalle.imageFaces}" style="width:200px;width:500px" />
                         </f:facet>
-                        <h:outputText value="Nombres:" />
+                        <h:outputText value="Nombres:" style="font-weight:bold"/>
                         <h:outputText value="#{userController.usuario.nombres}" />
-                        <h:outputText value="Apellido Paterno:" />
+                        <h:outputText value="Apellido Paterno:" style="font-weight:bold" />
                         <h:outputText value="#{userController.usuario.apellidoPaterno}" />
-                        <h:outputText value="Apellido Materno:" />
+                        <h:outputText value="Apellido Materno:" style="font-weight:bold"/>
                         <h:outputText value="#{userController.usuario.apellidoMaterno}" />
-                        <h:outputText value="Sexo:" />
+                        <h:outputText value="Sexo:" style="font-weight:bold" />
                         <h:outputText value="#{userController.usuario.sexo ? 'M':'F'}" />
-                        <h:outputText value="correo:" />
+                        <h:outputText value="correo:" style="font-weight:bold"/>
                         <h:outputText value="#{userController.usuarioDetalle.correo}" />
                     </p:panelGrid>
 

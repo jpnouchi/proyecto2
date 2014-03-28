@@ -51,7 +51,7 @@ public class LoginController  implements Serializable{
 
 //            FacesContext context = FacesContext.getCurrentInstance();
 //            context.addMessage("username", new FacesMessage("Invalid UserName and Password"));
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"Login Error", "Invalid UserName and Password"));
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR,"", "Usuario y Contraseña invalidos"));
 
             return "login";
 
