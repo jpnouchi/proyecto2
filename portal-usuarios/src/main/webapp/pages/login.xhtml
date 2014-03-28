@@ -1,20 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html"
-      >
- 
-    <h:body>
- 
-    	<h1>JSF 2.0 + Spring Example</h1>
- 
- 		#{userController.printMsgFromSpring()}
-        <h:form>
-            <h:inputText value="#{userController.input}" />
-            <h:commandButton value="Submit" type="submit" action="#{userController.procesarMensaje}" />
-        </h:form>
- 		
-    </h:body>
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <link href="themes/bluesky/skin.css" rel="stylesheet" type="text/css"/>
+</h:head>
+<h:body>
+
+    <p:layout id="layaout" fullPage="true" style="text-align: center;">
+        <p:layoutUnit id="top" position="center">
+            <div align="center">
+            <p:panel header="Login Portal" style="text-align: center;width: 380px;">
+                <h:form >
+                    <p:panelGrid  columns="2" style="text-align: center;">
+                        <h:outputLabel for="#{loginController.username}" value="Usuario"/>
+                        <h:inputText label="UserName" value="#{loginController.username}"/>
+                        <h:outputLabel for="#{loginController.password}" value="Contraseña"/>
+                        <h:inputSecret value="#{loginController.password}"></h:inputSecret>
+
+                        <f:facet name="footer" >
+                            <p:commandButton action="#{loginController.login}" type="submit" value="Login" style="text-align: center;" />
+                            <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true" />
+                        </f:facet>
+                    </p:panelGrid>
+                </h:form>
+            </p:panel>
+            </div>
+        </p:layoutUnit>
+    </p:layout>
+
+</h:body>
+
  
 </html>

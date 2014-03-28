@@ -23,6 +23,8 @@
         <net.sourceforge.jtds-version>1.3.0</net.sourceforge.jtds-version>
         <c3p0-version>0.9.1.2</c3p0-version>
         <commons-lang-version>2.6</commons-lang-version>
+        <primefaces-version>3.4</primefaces-version>
+
     </properties>
 
     <dependencies>
@@ -61,6 +63,12 @@
             <groupId>javax.servlet.jsp</groupId>
             <artifactId>jsp-api</artifactId>
             <version>2.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.primefaces</groupId>
+            <artifactId>primefaces</artifactId>
+            <version>${primefaces-version}</version>
         </dependency>
 
         <!-- EL -->
@@ -145,18 +153,22 @@
         </dependency>
 
         <dependency>
-            <groupId>net.sourceforge.jtds</groupId>
-            <artifactId>jtds</artifactId>
-            <version>${net.sourceforge.jtds-version}</version>
-        </dependency>
-
-        <dependency>
             <groupId>c3p0</groupId>
             <artifactId>c3p0</artifactId>
             <version>${c3p0-version}</version>
         </dependency>
 
     </dependencies>
+
+    <repositories>
+
+        <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+    </repositories>
   <build>
     <finalName>portal-usuarios</finalName>
   </build>

@@ -1,5 +1,6 @@
 package com.dev.domain.model;
 
+import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.type.Alias;
 
 /**
@@ -19,5 +20,13 @@ public class Filtro extends BaseObject{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+    }
+
+    public String addLike(String str){
+        if(StringUtils.isNotBlank(str)){
+               return "%"+str+"%";
+        }else{
+            return "";
+        }
     }
 }

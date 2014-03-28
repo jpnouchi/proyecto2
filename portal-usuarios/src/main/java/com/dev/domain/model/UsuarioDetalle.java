@@ -2,8 +2,11 @@ package com.dev.domain.model;
 
 import com.mysql.jdbc.Blob;
 import org.apache.ibatis.type.Alias;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 
 import java.awt.*;
+import java.io.ByteArrayInputStream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -20,6 +23,16 @@ public class UsuarioDetalle extends BaseObject {
     private String correo;
     private byte[] imagen;
     private Blob imagenBlob;
+
+    private StreamedContent imageFaces;
+
+    public StreamedContent getImageFaces() {
+        return imageFaces;
+    }
+
+    public void setImageFaces(StreamedContent imageFaces) {
+        this.imageFaces = imageFaces;
+    }
 
     public int getIdUsuarioDetalle() {
         return idUsuarioDetalle;
@@ -59,5 +72,8 @@ public class UsuarioDetalle extends BaseObject {
 
     public void setImagen(byte[] imagen) {
         this.imagen = imagen;
+        if(imagen!=null){
+            this.setImageFaces(new DefaultStreamedContent(new ByteArrayInputStream(imagen)));
+        }
     }
 }
