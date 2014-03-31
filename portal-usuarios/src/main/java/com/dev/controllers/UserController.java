@@ -5,6 +5,7 @@ import com.dev.domain.model.Usuario;
 import com.dev.domain.model.UsuarioDetalle;
 import com.dev.services.ServiceUsuario;
 import com.dev.services.UserBo;
+import com.dev.util.Util;
 import org.primefaces.event.SelectEvent;
 import org.primefaces.event.UnselectEvent;
 import org.primefaces.model.StreamedContent;
@@ -140,7 +141,7 @@ public class UserController  implements Serializable{
         FacesContext.getCurrentInstance().addMessage(null, msg);
         this.usuario=((Usuario) event.getObject());
         this.usuarioDetalle=serviceUsuarioImpl.getUsuarioDetalle(this.usuario.getIdUsuario());
-
+        this.usuarioDetalle.setImagenInput(Util.getImage(this.usuario.isSexo()));
         System.out.println(this.usuarioDetalle);
     }
 

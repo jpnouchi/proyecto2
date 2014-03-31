@@ -17,6 +17,14 @@ public class Usuario extends BaseObject {
     private String apellidoPaterno;
     private boolean sexo; // 0 F 1 M
 
+    public boolean isSexo() {
+        return sexo;
+    }
+
+    public void setSexo(boolean sexo) {
+        this.sexo = sexo;
+    }
+
     public int getIdUsuario() {
         return idUsuario;
     }
@@ -49,11 +57,5 @@ public class Usuario extends BaseObject {
         this.apellidoPaterno = apellidoPaterno;
     }
 
-    public boolean isSexo() {
-        return sexo;
-    }
 
-    public void setSexo(boolean sexo) {
-        this.sexo = sexo;
-    }
 }

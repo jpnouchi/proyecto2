@@ -9,7 +9,7 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <link href="themes/bluesky/skin.css" rel="stylesheet" type="text/css"/>
+    <!--<link href="themes/bluesky/skin.css" rel="stylesheet" type="text/css"/>-->
 </h:head>
 <h:body>
 <div align="center">
@@ -28,7 +28,7 @@
 
                 <p:dataTable id="users" var="user"
                              rendered="true"
-                             value="#{userController.mediumUsuariosModel}" paginator="true" rows="10"
+                             value="#{userController.mediumUsuariosModel}" paginator="true" rows="4"
                              selection="#{userController.usuario}" selectionMode="single">
 
                     <p:ajax event="rowSelect" listener="#{userController.onRowSelect}"
@@ -48,7 +48,7 @@
                     </p:column>
 
                     <p:column headerText="Sexo" style="width:24%">
-                        <h:outputText value="#{user.sexo ? 'M':'F'}" />
+                        <h:outputText value="#{!user.sexo ? 'F':'M'}" />
                     </p:column>
 
                 </p:dataTable>
@@ -57,19 +57,25 @@
                           showEffect="fade" hideEffect="explode" appendToBody="true">
 
                     <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
-                        <f:facet name="header">
-                            <p:graphicImage value="#{userController.usuarioDetalle.imageFaces}" style="width:200px;width:500px" />
-                        </f:facet>
-                        <h:outputText value="Nombres:" style="font-weight:bold"/>
-                        <h:outputText value="#{userController.usuario.nombres}" />
-                        <h:outputText value="Apellido Paterno:" style="font-weight:bold" />
-                        <h:outputText value="#{userController.usuario.apellidoPaterno}" />
-                        <h:outputText value="Apellido Materno:" style="font-weight:bold"/>
-                        <h:outputText value="#{userController.usuario.apellidoMaterno}" />
-                        <h:outputText value="Sexo:" style="font-weight:bold" />
-                        <h:outputText value="#{userController.usuario.sexo ? 'M':'F'}" />
-                        <h:outputText value="correo:" style="font-weight:bold"/>
-                        <h:outputText value="#{userController.usuarioDetalle.correo}" />
+                        <p:column>
+                            <p:graphicImage value="#{userController.usuarioDetalle.imageFaces}" style="width:230px;height:200px" />
+                        </p:column>
+
+                        <p:column>
+                            <p:panelGrid columns="2" cellpadding="4" style="border: none;margin:0 auto;">
+                                <h:outputText value="Nombres:" style="font-weight:bold"/>
+                                <h:outputText value="#{userController.usuario.nombres}" />
+                                <h:outputText value="Apellido Paterno:" style="font-weight:bold" />
+                                <h:outputText value="#{userController.usuario.apellidoPaterno}" />
+                                <h:outputText value="Apellido Materno:" style="font-weight:bold"/>
+                                <h:outputText value="#{userController.usuario.apellidoMaterno}" />
+                                <h:outputText value="Sexo:" style="font-weight:bold" />
+                                <h:outputText value="#{!userController.usuario.sexo ? 'F':'M'}" />
+                                <h:outputText value="correo:" style="font-weight:bold"/>
+                                <h:outputText value="#{userController.usuarioDetalle.correo}" />
+                            </p:panelGrid>
+                        </p:column>
+
                     </p:panelGrid>
 
                 </p:dialog>

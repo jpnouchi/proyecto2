@@ -7,6 +7,7 @@ import org.primefaces.model.StreamedContent;
 
 import java.awt.*;
 import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 
 /**
  * Created with IntelliJ IDEA.
@@ -71,9 +72,17 @@ public class UsuarioDetalle extends BaseObject {
     }
 
     public void setImagen(byte[] imagen) {
+
         this.imagen = imagen;
         if(imagen!=null){
             this.setImageFaces(new DefaultStreamedContent(new ByteArrayInputStream(imagen)));
+        }
+    }
+
+    public void setImagenInput(InputStream imagen) {
+
+        if(imagen!=null){
+            this.setImageFaces(new DefaultStreamedContent((imagen)));
         }
     }
 }
