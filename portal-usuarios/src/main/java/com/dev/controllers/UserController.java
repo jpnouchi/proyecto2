@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.faces.event.ActionEvent;
@@ -54,6 +55,22 @@ public class UserController  implements Serializable{
 
     private UsuarioDataModel mediumUsuariosModel;
 
+    @ManagedProperty(value="#{selectedUser}")
+    private Usuario selectedUser;
+
+    public Usuario getSelectedUser() {
+        return selectedUser;
+    }
+
+    public void setSelectedUser(Usuario selectedUser) {
+        this.selectedUser = selectedUser;
+        this.setUsuario(this.selectedUser);
+        this.usuarioDetalle=serviceUsuarioImpl.getUsuarioDetalle(this.getUsuario().getIdUsuario());
+        this.usuarioDetalle.setImagenInput(Util.getImage(this.getUsuario().isSexo()));
+        System.out.println(this.usuarioDetalle);
+
+    }
+
     public StreamedContent getImage() {
         return image;
     }
@@ -87,7 +104,7 @@ public class UserController  implements Serializable{
     public void init(){
         System.out.println("init");
         this.usuarioList=serviceUsuarioImpl.getAll();
-        this.mediumUsuariosModel = new UsuarioDataModel(usuarioList);
+        //this.mediumUsuariosModel = new UsuarioDataModel(usuarioList);
 
     }
 

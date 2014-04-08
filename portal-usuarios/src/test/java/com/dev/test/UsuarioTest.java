@@ -67,6 +67,12 @@ public class UsuarioTest {
         System.out.println(input);
         System.out.println(path);
         System.out.println(path2);
+
+        int asd = (int)(Math.random()*10);
+        int aaa= asd%2;
+        System.out.println("asd "+asd);
+        System.out.println("aaa "+aaa);
+
         //File file = new File()
 
     }

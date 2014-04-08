@@ -45,7 +45,7 @@ public class LoginController  implements Serializable{
 
         if( ("test".equalsIgnoreCase(getUsername()) && "test".equals(getPassword())))
         {
-            return "home?faces-redirect=true";
+            return "home2?faces-redirect=true";
 
         }else{
 

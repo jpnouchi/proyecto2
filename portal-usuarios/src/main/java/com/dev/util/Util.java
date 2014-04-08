@@ -18,13 +18,32 @@ public class Util {
         ClassLoader classloader=null;
         classloader= Thread.currentThread().getContextClassLoader();
         InputStream input=null;
-        if(!flag){
-            input=classloader.getResourceAsStream("images/female.jpg");
+        int random=Util.random();
+        String ruta;
+        if(flag){
+
+            //input=classloader.getResourceAsStream("images/female.jpg");
+            switch (random){
+                case 0:
+                    ruta="images/hombre1.jpg";
+                    break;
+                default:
+                    ruta="images/hombre2.jpg";
+                    break;
+            }
         }else{
-            input=classloader.getResourceAsStream("images/male.jpg");
+            //input=classloader.getResourceAsStream("images/male.jpg");
 
+            switch (random){
+                case 0:
+                    ruta="images/mujer1.jpg";
+                    break;
+                default:
+                    ruta="images/mujer2.jpg";
+                    break;
+            }
         }
-
+        input=classloader.getResourceAsStream(ruta);
         return input;
     }
 
@@ -42,5 +61,10 @@ public class Util {
             fis.close();
             baos.close();
         }
+    }
+
+    public static int random(){
+
+        return ((int)(Math.random()*10)%2);
     }
 }
