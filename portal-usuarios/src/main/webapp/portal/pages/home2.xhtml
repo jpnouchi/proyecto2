@@ -16,12 +16,17 @@
     <h:form id="form">
 
                 <p:panel header="Busqueda de Usuarios" style="width: 700;">
-                    <p:panelGrid columns="3" cellpadding="2">
-                        <h:outputLabel value="Nombre :"/>
-                        <p:inputText value="#{userController.nameUser}" label="UserName"/>
+                        <p:panelGrid columns="2" cellpadding="2">
+                            <h:outputLabel value="Nombre :"/>
+                            <p:inputText value="#{userController.nameUser}" label="UserName"/>
+                            <h:outputLabel value="Ap. Paterno :"/>
+                            <p:inputText value="#{userController.paternoUser}" label="LastName1"/>
+                            <h:outputLabel value="Ap. Materno :"/>
+                            <p:inputText value="#{userController.maternoUser}" label="LastName2"/>
+
+                        </p:panelGrid>
                         <p:commandButton value="Buscar" action="#{userController.serchUser}"
-                        update=":users"  />
-                    </p:panelGrid>
+                                     update=":users"  />
                 </p:panel>
     </h:form>
 

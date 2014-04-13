@@ -43,6 +43,10 @@ public class UserController  implements Serializable{
 
     private String nameUser;
 
+    private String paternoUser;
+
+    private String maternoUser;
+
     private List<Usuario> usuarioList;
 
     private int idUsuario;
@@ -57,6 +61,23 @@ public class UserController  implements Serializable{
 
     @ManagedProperty(value="#{selectedUser}")
     private Usuario selectedUser;
+
+
+    public String getPaternoUser() {
+        return paternoUser;
+    }
+
+    public void setPaternoUser(String paternoUser) {
+        this.paternoUser = paternoUser;
+    }
+
+    public String getMaternoUser() {
+        return maternoUser;
+    }
+
+    public void setMaternoUser(String maternoUser) {
+        this.maternoUser = maternoUser;
+    }
 
     public Usuario getSelectedUser() {
         return selectedUser;
@@ -143,6 +164,8 @@ public class UserController  implements Serializable{
     public void serchUser(){
         Filtro filtro = new Filtro();
         filtro.setNombre(filtro.addLike(getNameUser()));
+        filtro.setApellidoPaterno(filtro.addLike(getPaternoUser()));
+        filtro.setApellidoMaterno(filtro.addLike(getMaternoUser()));
         this.usuarioList=serviceUsuarioImpl.getUsuario(filtro);
         this.mediumUsuariosModel = new UsuarioDataModel(this.usuarioList);
     }

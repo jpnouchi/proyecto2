@@ -13,6 +13,24 @@ import org.apache.ibatis.type.Alias;
 @Alias("filtro")
 public class Filtro extends BaseObject{
     private String nombre;
+    private String apellidoPaterno;
+    private String apellidoMaterno;
+
+    public String getApellidoPaterno() {
+        return apellidoPaterno;
+    }
+
+    public void setApellidoPaterno(String apellidoPaterno) {
+        this.apellidoPaterno = apellidoPaterno;
+    }
+
+    public String getApellidoMaterno() {
+        return apellidoMaterno;
+    }
+
+    public void setApellidoMaterno(String apellidoMaterno) {
+        this.apellidoMaterno = apellidoMaterno;
+    }
 
     public String getNombre() {
         return nombre;

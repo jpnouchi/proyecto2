@@ -33,9 +33,14 @@
         <where>
             <if test=" nombre!=null and nombre!='' ">
                  nombres like #{nombre}
-               or apellidoPaterno  like #{nombre}
-               or apellidoMaterno  like #{nombre}
             </if>
+            <if test=" apellidoPaterno!=null and apellidoPaterno!='' ">
+                or apellidoPaterno  like #{apellidoPaterno}
+            </if>
+            <if test=" apellidoMaterno!=null and apellidoMaterno!='' ">
+                or  apellidoMaterno  like #{apellidoMaterno}
+            </if>
+
 
         </where>
     </select>
