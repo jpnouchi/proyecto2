@@ -124,7 +124,7 @@ public class UserController  implements Serializable{
     @PostConstruct
     public void init(){
         System.out.println("init");
-        this.usuarioList=serviceUsuarioImpl.getAll();
+        //this.usuarioList=serviceUsuarioImpl.getAll();
         //this.mediumUsuariosModel = new UsuarioDataModel(usuarioList);
 
     }
