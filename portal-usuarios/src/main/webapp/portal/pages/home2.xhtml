@@ -14,7 +14,17 @@
 <h:body>
 <div align="center">
     <h:form id="form">
+        <p:panel style="width: 700;">
+            <p:tabMenu activeIndex="1" rendered="#{loginController.admin}">
+                <p:menuitem value="Buscar"  icon="ui-icon-search">
+                </p:menuitem>
+                <p:menuitem value="Documentos"  icon="ui-icon-document">
+                </p:menuitem>
+                <p:menuitem value="Modificar" icon="ui-icon-wrench">
+                </p:menuitem>
+            </p:tabMenu>
 
+        </p:panel>
                 <p:panel header="Busqueda de Usuarios" style="width: 700;">
                         <p:panelGrid columns="2" cellpadding="2">
                             <h:outputLabel value="Nombre :"/>
@@ -53,40 +63,13 @@
                     </p:column>
 
                     <p:column style="width:4%">
-                        <p:commandButton id="selectButton" update=":display" oncomplete="userDialog.show()" icon="ui-icon-search" title="View">
-                            <f:setPropertyActionListener value="#{user}" target="#{userController.selectedUser}" />
+                        <p:commandButton id="selectButton" type="submit" action="#{userController.viewDetail}" icon="ui-icon-search" title="View">
+                            <f:setPropertyActionListener target="#{userController.idUsuarioInfo}" value="#{user.idUsuario}" />
+
                         </p:commandButton>
                     </p:column>
 
                 </p:dataTable>
-
-                <p:dialog id="dialog" header="Usuario" widgetVar="userDialog" resizable="false"
-                          showEffect="fade" hideEffect="explode" appendToBody="true">
-
-                    <p:panelGrid id="display" columns="2" cellpadding="4" style="margin:0 auto;">
-                        <p:column>
-                            <p:graphicImage value="#{userController.usuarioDetalle.imageFaces}" style="width:230px;height:200px" />
-                        </p:column>
-
-                        <p:column>
-                            <p:panelGrid columns="2" cellpadding="4" style="border: none;margin:0 auto;">
-                                <h:outputText value="Nombres:" style="font-weight:bold"/>
-                                <h:outputText value="#{userController.usuario.nombres}" />
-                                <h:outputText value="Apellido Paterno:" style="font-weight:bold" />
-                                <h:outputText value="#{userController.usuario.apellidoPaterno}" />
-                                <h:outputText value="Apellido Materno:" style="font-weight:bold"/>
-                                <h:outputText value="#{userController.usuario.apellidoMaterno}" />
-                                <h:outputText value="Sexo:" style="font-weight:bold" />
-                                <h:outputText value="#{!userController.usuario.sexo ? 'F':'M'}" />
-                                <h:outputText value="correo:" style="font-weight:bold"/>
-                                <h:outputText value="#{userController.usuarioDetalle.correo}" />
-                            </p:panelGrid>
-                        </p:column>
-
-                    </p:panelGrid>
-
-                </p:dialog>
-                <!--<p:growl id="growl" showDetail="true"/>-->
 
 </div>
 </h:body>

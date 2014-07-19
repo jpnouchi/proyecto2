@@ -53,6 +53,16 @@ public class UserController  implements Serializable{
 
     Usuario usuario;
 
+    Usuario usuarioInformacion;
+
+    public Usuario getUsuarioInformacion() {
+        return usuarioInformacion;
+    }
+
+    public void setUsuarioInformacion(Usuario usuarioInformacion) {
+        this.usuarioInformacion = usuarioInformacion;
+    }
+
     UsuarioDetalle usuarioDetalle;
 
     private StreamedContent image;
@@ -118,6 +128,7 @@ public class UserController  implements Serializable{
 
     public UserController() {
         this.usuario=new Usuario();
+        this.usuarioList=new ArrayList<Usuario>();
 
     }
 
@@ -185,10 +196,33 @@ public class UserController  implements Serializable{
         System.out.println(this.usuarioDetalle);
     }
 
+    public void onListenerUserDetalle(ActionEvent event){
+        System.out.println("event "+event);
+    }
+
     public void onRowUnselect(UnselectEvent event) {
         FacesMessage msg = new FacesMessage("User Unselected", ((Usuario) event.getObject()).getIdUsuario()+"");
 
         FacesContext.getCurrentInstance().addMessage(null, msg);
+    }
+
+    private int idUsuarioInfo;
+
+    public int getIdUsuarioInfo() {
+        return idUsuarioInfo;
+    }
+
+    public void setIdUsuarioInfo(int idUsuarioInfo) {
+        this.idUsuarioInfo = idUsuarioInfo;
+    }
+
+    public String  viewDetail(){
+        System.out.println(idUsuarioInfo);
+        usuarioInformacion=serviceUsuarioImpl.getUsuarioInformacion(idUsuarioInfo);
+        usuarioInformacion.setNombreInfo("");
+        this.usuarioDetalle=serviceUsuarioImpl.getUsuarioDetalle(idUsuarioInfo);
+        this.usuarioDetalle.setImagenInput(Util.getImage(usuarioInformacion.isSexo()));
+        return "detail";
     }
 
 

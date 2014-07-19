@@ -14,30 +14,8 @@
 <h:body>
     <div align="center">
         <h:form id="form">
-            <p:panel id="toggleable" header="Portal Usuarios" astyle="margin-bottom:20px">
-                <f:facet name="actions">
-                    <h:button styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default" value="LogOut" outcome="login"/>
-                    <p:panelGrid columns="2" cellpadding="2" styleClass="ui-panel-titlebar-icon ui-corner-all ">
-                        <h:outputLabel styleClass="ui-corner-all" value="Usuario"/>
-                        <h:outputLabel styleClass="ui-corner-all" value="#{loginController.username}"/>
 
-                    </p:panelGrid>
-
-
-                </f:facet>
-                    <p:tabMenu activeIndex="1" rendered="#{loginController.admin}">
-                        <p:menuitem value="Buscar"  icon="ui-icon-search">
-                            <f:param name="i" value="1" />
-                        </p:menuitem>
-                        <p:menuitem value="Documentos"  icon="ui-icon-document">
-                            <f:param name="i" value="2" />
-                        </p:menuitem>
-                        <p:menuitem value="Modificar" icon="ui-icon-wrench">
-                            <f:param name="i" value="3" />
-                        </p:menuitem>
-                    </p:tabMenu>
-            </p:panel>
-            <p:panel header="Busqueda de Usuarios" style="width: 600;">
+            <p:panel header="Busqueda de Usuarios" style="width: 700;">
                 <p:panelGrid columns="2" cellpadding="2">
                     <h:outputLabel value="Nombre :"/>
                     <p:inputText value="#{userController.nameUser}" label="UserName"/>
@@ -73,15 +51,10 @@
             <p:column headerText="Sexo" style="width:24%">
                 <h:outputText value="#{!user.sexo ? 'F':'M'}" />
             </p:column>
-            <p:column style="width:4%">
-                <p:commandButton id="selectButton2" update=":display" oncomplete="userDialog.show()" icon="ui-icon-search" title="Modal Panel ">
-                    <f:setPropertyActionListener value="#{user}" target="#{userController.selectedUser}" />
-                </p:commandButton>
-            </p:column>
-            <p:column style="width:4%">
-                <p:commandButton id="selectButtonDetail" type="submit" action="#{userController.viewDetail}" icon="ui-icon-search" title="Detail">
-                    <f:setPropertyActionListener target="#{userController.idUsuarioInfo}" value="#{user.idUsuario}" />
 
+            <p:column style="width:4%">
+                <p:commandButton id="selectButton" update=":display" oncomplete="userDialog.show()" icon="ui-icon-search" title="View">
+                    <f:setPropertyActionListener value="#{user}" target="#{userController.selectedUser}" />
                 </p:commandButton>
             </p:column>
 
@@ -113,6 +86,7 @@
             </p:panelGrid>
 
         </p:dialog>
+        <!--<p:growl id="growl" showDetail="true"/>-->
 
     </div>
 </h:body>

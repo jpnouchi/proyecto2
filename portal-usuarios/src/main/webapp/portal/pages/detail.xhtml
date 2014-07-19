@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:c="http://java.sun.com/jstl/core"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <!--<link href="themes/bluesky/skin.css" rel="stylesheet" type="text/css"/>-->
+</h:head>
+<h:body>
+    <h:form id="formDetail">
+
+            <p:panel header="Consulta de Referencias" style="width: 700;">
+                <h:outputLabel value="#{userController.usuarioInformacion.nombreInfo}"/>
+                <f:facet name="actions">
+                    <f:facet name="actions">
+                        <h:button styleClass="ui-panel-titlebar-icon ui-corner-all ui-state-default" value="Back" outcome="home"/>
+                    </f:facet>                </f:facet>
+            </p:panel>
+            <p:panel header="Datos Personales">
+                <p:panelGrid  cellpadding="2">
+                    <p:row>
+                        <p:column>
+                            <p:row>
+                                <p:panelGrid columns="4" cellpadding="2">
+                                    <h:outputLabel value="Sexo :" style="font-weight:bold"/>
+                                    <h:outputText value="#{userController.usuarioInformacion.sexo ? 'FEMENINO':'MASCULINO'}" />
+                                    <h:outputLabel value="Estado Civil :" style="font-weight:bold"/>
+                                    <h:outputText value="#{userController.usuarioInformacion.estadoCivil}" />
+                                    <h:outputLabel value="Fecha Nacmto:" style="font-weight:bold"/>
+                                    <h:outputText value="#{userController.usuarioInformacion.fechaNacimiento}" >
+                                        <f:convertDateTime pattern="dd-MM-yyyy " />
+                                    </h:outputText>
+                                    <h:outputLabel value="Est. Legal :" style="font-weight:bold"/>
+                                    <h:outputText value="#{userController.usuarioInformacion.estadoLegal}" />
+                                    <h:outputLabel value="Hijo de:" style="font-weight:bold"/>
+                                    <h:outputText value="#{userController.usuarioInformacion.hijoDe}" />
+                                    <h:outputLabel value="Pais de Origen:" style="font-weight:bold"/>
+                                    <h:outputText value="#{userController.usuarioInformacion.pais}" />
+                                    <h:outputLabel value="Lugar de nacimiento:" style="font-weight:bold"/>
+                                    <h:outputText value="#{userController.usuarioInformacion.lugarNacimiento}" />
+                                    <h:outputLabel value="Nacionalidad:" style="font-weight:bold" />
+                                    <h:outputText value="#{userController.usuarioInformacion.nacionalidad}" />
+
+                                </p:panelGrid>     
+                            </p:row>
+                            <p:row>
+
+                                <p:column>
+                                        <p:dataTable id="datos" var="dato"
+                                                     rendered="true"
+                                                     value="#{userController.usuarioInformacion.datosList}"  rows="3"
+                                                >
+
+                                            <p:column headerText="Tipo Dato" style="width:24%">
+                                                <h:outputText value="#{dato.tipoDato}" />
+                                            </p:column>
+
+                                            <p:column headerText="Apellido y/o Alias" style="width:24%">
+                                                <h:outputText value="#{dato.apellidos}" />
+                                            </p:column>
+
+                                            <p:column headerText="Nombres" style="width:24%">
+                                                <h:outputText value="#{dato.nombres}" />
+                                            </p:column>
+
+                                                </p:dataTable>
+                                    </p:column>
+                                    <p:column>
+                                        <p:dataTable id="documentos" var="documento"
+                                                     rendered="true"
+                                                     value="#{userController.usuarioInformacion.documentoList}"  rows="3"
+                                                >
+
+                                            <p:column headerText="Tipo Doc" style="width:24%">
+                                                <h:outputText value="#{documento.tipo}" />
+                                            </p:column>
+
+                                            <p:column headerText="Doc Identidad" style="width:24%">
+                                                <h:outputText value="#{documento.numero}" />
+                                            </p:column>
+                                        </p:dataTable>
+                                    </p:column>
+
+                            </p:row>
+                            <p:row>
+                                <p:dataTable id="ubigeos" var="ubigeo"
+                                             rendered="true"
+                                             value="#{userController.usuarioInformacion.ubigeoList}"  rows="3"
+                                        >
+                                    <p:column headerText="Tipo Instal" style="width:24%">
+                                        <h:outputText value="#{ubigeo.tipoInstalacion}" />
+                                    </p:column>
+                                    <p:column headerText="Direccion" style="width:24%">
+                                        <h:outputText value="#{ubigeo.direccion}" />
+                                    </p:column>
+                                    <p:column headerText="Localidad" style="width:24%">
+                                        <h:outputText value="#{ubigeo.localidad}" />
+                                    </p:column>
+                                </p:dataTable>
+                            </p:row>
+
+
+                        </p:column>
+
+                        <p:column>
+                            <p:graphicImage value="#{userController.usuarioDetalle.imageFaces}" style="width:230px;height:200px" />
+                        </p:column>
+                    </p:row>
+                </p:panelGrid>
+
+            </p:panel>
+
+        <p:panel header="Referencias">
+            <p:panelGrid  cellpadding="2">
+                <p:row>
+                    <p:column>
+                        <p:dataTable id="referencias" var="referencia"
+                                     rendered="true"
+                                     value="#{userController.usuarioInformacion.referenciaList}"  rows="8"
+                                >
+                            <p:column headerText="Documento" style="width:24%">
+                                <h:outputText value="#{referencia.documento}" />
+                            </p:column>
+                            <p:column headerText="Numero" style="width:24%">
+                                <h:outputText value="#{referencia.numero}" />
+                            </p:column>
+                            <p:column headerText="Fecha" style="width:24%">
+                                <h:outputText value="#{referencia.fecha}" >
+                                    <f:convertDateTime pattern="dd-MM-yyyy " />
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="Lugar del Hecho" style="width:24%">
+                                <h:outputText value="#{referencia.lugarHecho}" />
+                            </p:column>
+                        </p:dataTable>
+                    </p:column>
+
+                </p:row>
+
+            </p:panelGrid>
+
+        </p:panel>
+
+
+
+    </h:form>
+
+
+
+
+</h:body>
+
+
+</html>

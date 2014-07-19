@@ -1,9 +1,7 @@
 package com.dev.services.impl;
 
 import com.dev.domain.mapper.UsuarioMapper;
-import com.dev.domain.model.Filtro;
-import com.dev.domain.model.Usuario;
-import com.dev.domain.model.UsuarioDetalle;
+import com.dev.domain.model.*;
 import com.dev.services.ServiceUsuario;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -55,5 +53,30 @@ public class ServiceUsuarioImpl implements ServiceUsuario {
     @Override
     public UsuarioDetalle getUsuarioDetalle(int idUsuario) {
         return usuarioMapper.getUsuarioDetalle(idUsuario);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public Usuario getUsuarioInformacion(int idUsuario) {
+        Usuario usuario=usuarioMapper.getUsuarioInformacion(idUsuario);
+        usuario.setDocumentoList(getUsuarioDocumentos(idUsuario));
+        usuario.setUbigeoList(getUsuarioUbigeo(idUsuario));
+        usuario.setReferenciaList(getUsuarioReferencias(idUsuario));
+        usuario.setDatosList(usuarioMapper.getUsuarioDatos(idUsuario));
+        return usuario;  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<Documento> getUsuarioDocumentos(int idUsuario) {
+        return usuarioMapper.getUsuarioDocumentos(idUsuario);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<Ubigeo> getUsuarioUbigeo(int idUsuario) {
+        return usuarioMapper.getUsuarioUbigeo(idUsuario);  //To change body of implemented methods use File | Settings | File Templates.
+    }
+
+    @Override
+    public List<Referencia> getUsuarioReferencias(int idUsuario) {
+        return usuarioMapper.getUsuarioReferencias(idUsuario);  //To change body of implemented methods use File | Settings | File Templates.
     }
 }

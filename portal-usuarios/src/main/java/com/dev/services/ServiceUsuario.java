@@ -1,8 +1,6 @@
 package com.dev.services;
 
-import com.dev.domain.model.Filtro;
-import com.dev.domain.model.Usuario;
-import com.dev.domain.model.UsuarioDetalle;
+import com.dev.domain.model.*;
 
 import java.util.List;
 
@@ -16,5 +14,9 @@ import java.util.List;
 public interface ServiceUsuario extends GenericService<Usuario> {
     public List<Usuario> getUsuario(Filtro filtro);
     public UsuarioDetalle getUsuarioDetalle(int idUsuario);
+    public Usuario getUsuarioInformacion(int idUsuario);
+    public List<Documento> getUsuarioDocumentos(int idUsuario);
+    public List<Ubigeo> getUsuarioUbigeo(int idUsuario);
+    public List<Referencia> getUsuarioReferencias(int idUsuario);
 
 }

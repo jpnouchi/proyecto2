@@ -1,5 +1,6 @@
 package com.dev.controllers;
 
+import org.apache.commons.lang.StringUtils;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -24,6 +25,16 @@ public class LoginController  implements Serializable{
 
     private String password;
 
+    private boolean admin;
+
+    public boolean isAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(boolean admin) {
+        this.admin = admin;
+    }
+
     public String getUsername() {
         return username;
     }
@@ -43,9 +54,10 @@ public class LoginController  implements Serializable{
     public String login()
     {
 
-        if( ("test".equalsIgnoreCase(getUsername()) && "test".equals(getPassword())))
+        if( StringUtils.isNotBlank(getUsername()) && "test".equals(getPassword()))
         {
-            return "home2?faces-redirect=true";
+            admin=(("admin".equalsIgnoreCase(getUsername())?true:false));
+            return "home?faces-redirect=true";
 
         }else{
 

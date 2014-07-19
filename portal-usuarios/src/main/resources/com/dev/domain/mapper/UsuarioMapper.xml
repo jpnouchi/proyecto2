@@ -64,4 +64,117 @@
         </where>
     </select>
 
+    <resultMap id="resultUsuarioInformacion" type="usuario">
+        <result property="idUsuario" column="idUsuario"/>
+        <result property="nombres" column="nombres"/>
+        <result property="apellidoMaterno" column="apellidoMaterno"/>
+        <result property="apellidoPaterno" column="apellidoPaterno"/>
+        <result property="sexo" column="sexo"/>
+        <result property="estadoCivil" column="estadoCivil"/>
+        <result property="fechaNacimiento" column="fechaNacimiento"/>
+        <result property="estadoLegal" column="estadoLegal"/>
+        <result property="hijoDe" column="hijoDe"/>
+        <result property="pais" column="pais"/>
+        <result property="lugarNacimiento" column="lugarNacimiento"/>
+        <result property="nacionalidad" column="nacionalidad"/>
+    </resultMap>
+
+    <select id="getUsuarioInformacion"    resultMap="resultUsuarioInformacion" parameterType="int">
+        select	idUsuario
+            ,	nombres
+            ,	apellidoPaterno
+            ,	apellidoMaterno
+            ,   sexo
+            ,   estadoCivil
+            ,   fechaNacimiento
+        ,   estadoLegal
+        ,   hijoDe
+        ,   pais
+        ,   lugarNacimiento
+        ,   nacionalidad
+        from	usuario
+        <where>
+            idUsuario = #{idUsuario}
+        </where>
+    </select>
+
+    <resultMap id="resultUsuarioDocumentos" type="documento">
+        <result property="idUsuarioDocumento" column="idUsuarioDocumento"/>
+        <result property="tipo" column="tipo"/>
+        <result property="numero" column="numero"/>
+    </resultMap>
+
+    <select id="getUsuarioDocumentos"    resultMap="resultUsuarioDocumentos" parameterType="int">
+        select
+            idUsuarioDocumento
+        ,	tipo
+        ,	numero
+        from	usuariodocumentos
+        <where>
+            idUsuario = #{idUsuario}
+        </where>
+    </select>
+
+    <resultMap id="resultUsuarioUbigeo" type="ubigeo">
+        <result property="idUbigeo" column="idUbigeo"/>
+        <result property="tipoInstalacion" column="tipoInstalacion"/>
+        <result property="direccion" column="direccion"/>
+        <result property="localidad" column="localidad"/>
+    </resultMap>
+
+    <select id="getUsuarioUbigeo"    resultMap="resultUsuarioUbigeo" parameterType="int">
+        select
+        idUbigeo
+        ,tipoInstalacion
+        ,direccion
+        ,localidad
+        from  ubigeo
+        <where>
+            idUsuario = #{idUsuario}
+        </where>
+    </select>
+
+    <resultMap id="resultUsuarioReferencia" type="referencia">
+        <result property="idReferencia" column="idReferencia"/>
+        <result property="documento" column="documento"/>
+        <result property="numero" column="numero"/>
+        <result property="fecha" column="fecha"/>
+        <result property="lugarHecho" column="lugarHecho"/>
+        <result property="contenido" column="contenido"/>
+
+    </resultMap>
+
+    <select id="getUsuarioReferencias"    resultMap="resultUsuarioReferencia" parameterType="int">
+        select
+        idReferencia
+        ,documento
+        ,numero
+        ,fecha
+        ,lugarHecho
+        ,contenido
+        from  usuarioreferencias
+        <where>
+            idUsuario = #{idUsuario}
+        </where>
+    </select>
+
+    <resultMap id="resultUsuarioDatos" type="datos">
+        <result property="idDatosUsuario" column="idDatosUsuario"/>
+        <result property="tipoDato" column="tipoDato"/>
+        <result property="apellidos" column="apellidos"/>
+        <result property="nombres" column="nombres"/>
+    </resultMap>
+
+    <select id="getUsuarioDatos"    resultMap="resultUsuarioDatos" parameterType="int">
+        select
+         tipoDato
+        ,idDatosUsuario
+        ,apellidos
+        ,nombres
+        from  usuariodatos
+        <where>
+            idUsuario = #{idUsuario}
+        </where>
+    </select>
+
 </mapper>

@@ -4,6 +4,7 @@ import com.dev.domain.mapper.UsuarioMapper;
 import com.dev.domain.model.Filtro;
 import com.dev.domain.model.Usuario;
 import com.dev.domain.model.UsuarioDetalle;
+import com.dev.services.ServiceUsuario;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +30,9 @@ public class UsuarioTest {
 
     @Autowired
     private UsuarioMapper usuarioMapper;
+
+    @Autowired
+    private ServiceUsuario serviceUsuarioImpl;
 
     @Test
     public void getAll(){
@@ -75,5 +79,12 @@ public class UsuarioTest {
 
         //File file = new File()
 
+    }
+
+    @Test
+    public void getUsuarioInformacion(){
+
+        Usuario usuario=serviceUsuarioImpl.getUsuarioInformacion(1);
+        System.out.println(usuario);
     }
 }
