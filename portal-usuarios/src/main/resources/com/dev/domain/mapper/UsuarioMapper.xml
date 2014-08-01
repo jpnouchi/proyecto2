@@ -13,6 +13,14 @@
         <result property="sexo" column="sexo"/>
     </resultMap>
 
+    <resultMap id="resultUser" type="user">
+        <result property="idUser" column="idUser"/>
+        <result property="nameUser" column="nameUser"/>
+        <result property="password" column="password"/>
+        <result property="rol" column="rol"/>
+
+    </resultMap>
+
 
     <select id="getAll"  fetchSize="10"  resultMap="resultUsuario">
         select	idUsuario
@@ -22,6 +30,8 @@
             ,   sexo
         from	usuario
     </select>
+
+
 
     <select id="getUsuario"  fetchSize="10"  resultMap="resultUsuario" parameterType="filtro">
         select	idUsuario
@@ -165,7 +175,7 @@
         <result property="nombres" column="nombres"/>
     </resultMap>
 
-    <select id="getUsuarioDatos"    resultMap="resultUsuarioDatos" parameterType="int">
+    <select id="getUsuarioDatos"  flushCache="true"  resultMap="resultUsuarioDatos" parameterType="int">
         select
          tipoDato
         ,idDatosUsuario
@@ -176,5 +186,59 @@
             idUsuario = #{idUsuario}
         </where>
     </select>
+    <insert id="addUser" parameterType="user" >
+        INSERT INTO user (
+         userName
+        ,password
+        ,rol )
+        values
+        (
+          #{userName}
+         ,#{password}
+         ,#{rol}
+        )
+    </insert>
 
+    <update id="updateUSer" parameterType="user">
+
+        update user
+        <set>
+            <if test="password != nul and password!=''">password=#{password},</if>
+            <if test="rol != null">rol=#{rol}</if>
+        </set>
+        <where>
+            idUser=#{idUser}
+        </where>
+
+
+    </update>
+
+    <select id="getUser"  fetchSize="10"  resultMap="resultUser" parameterType="user">
+        select	idUser
+        ,	userName
+        ,	password
+        ,	rol
+        from user
+        <where>
+            <if test=" userName!=null  ">
+                userName = #{userName}
+            </if>
+            <if test=" password!=null ">
+                and   password = #{password}
+            </if>
+        </where>
+    </select>
+
+    <select id="findUser"  fetchSize="10"  resultMap="resultUser" parameterType="user">
+        select	idUser
+        ,	userName
+        ,	password
+        ,	rol
+        from user
+        <where>
+            <if test=" userName!=null and userName!='' ">
+                userName like #{userName}
+            </if>
+        </where>
+    </select>
 </mapper>

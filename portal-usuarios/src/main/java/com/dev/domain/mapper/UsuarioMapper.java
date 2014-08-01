@@ -23,6 +23,11 @@ public interface UsuarioMapper {
     public List<Ubigeo> getUsuarioUbigeo(int idUsuario);
     public List<Referencia> getUsuarioReferencias(int idUsuario);
     public List<Datos> getUsuarioDatos(int idUsuario);
+    public User getUser(User user);
+    public void updateUser(User user);
+    public void deleteUser(User user);
+    public void addUser(User user);
+    public List<User> findUser(User user);
 
 
 }

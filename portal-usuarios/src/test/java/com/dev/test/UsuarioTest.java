@@ -12,8 +12,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
-import java.io.ByteArrayInputStream;
-import java.io.File;
 import java.io.InputStream;
 import java.util.List;
 
@@ -67,7 +65,7 @@ public class UsuarioTest {
         String path2=System.getProperty("java.class.path");
 
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        InputStream input =classloader.getResourceAsStream("images/female.jpg");
+        InputStream input =classloader.getResourceAsStream("portal/female.jpg");
         System.out.println(input);
         System.out.println(path);
         System.out.println(path2);

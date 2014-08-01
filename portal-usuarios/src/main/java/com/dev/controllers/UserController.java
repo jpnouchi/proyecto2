@@ -1,8 +1,10 @@
 package com.dev.controllers;
 
 import com.dev.domain.model.Filtro;
+import com.dev.domain.model.User;
 import com.dev.domain.model.Usuario;
 import com.dev.domain.model.UsuarioDetalle;
+import com.dev.services.ServiceUser;
 import com.dev.services.ServiceUsuario;
 import com.dev.services.UserBo;
 import com.dev.util.Util;
@@ -41,6 +43,9 @@ public class UserController  implements Serializable{
     @Autowired
     private ServiceUsuario serviceUsuarioImpl;
 
+    @Autowired
+    private ServiceUser serviceUserImpl;
+
     private String nameUser;
 
     private String paternoUser;
@@ -51,9 +56,72 @@ public class UserController  implements Serializable{
 
     private int idUsuario;
 
+    private  List<User> userList;
+
+    @ManagedProperty(value="#{userLogin}")
+    private User userLogin;
+
+    private String mensaje;
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+
+    public User getUserAdd() {
+        return userAdd;
+    }
+
+    public void setUserAdd(User userAdd) {
+        this.userAdd = userAdd;
+    }
+
+    private User userAdd;
+
+    private int idUser;
+
+    private String username;
+
     Usuario usuario;
 
     Usuario usuarioInformacion;
+
+    public User getUserLogin() {
+        return userLogin;
+    }
+
+    public void setUserLogin(User userLogin) {
+        this.userLogin = userLogin;
+    }
+
+    public List<User> getUserList() {
+        return userList;
+    }
+
+    public void setUserList(List<User> userList) {
+        this.userList = userList;
+    }
+
+
+
+    public int getIdUser() {
+        return idUser;
+    }
+
+    public void setIdUser(int idUser) {
+        this.idUser = idUser;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 
     public Usuario getUsuarioInformacion() {
         return usuarioInformacion;
@@ -129,6 +197,10 @@ public class UserController  implements Serializable{
     public UserController() {
         this.usuario=new Usuario();
         this.usuarioList=new ArrayList<Usuario>();
+        this.userAdd=new User();
+        this.userLogin=new User();
+        this.userList=new ArrayList<User>();
+        mensaje="";
 
     }
 
@@ -223,6 +295,31 @@ public class UserController  implements Serializable{
         this.usuarioDetalle=serviceUsuarioImpl.getUsuarioDetalle(idUsuarioInfo);
         this.usuarioDetalle.setImagenInput(Util.getImage(usuarioInformacion.isSexo()));
         return "detail";
+    }
+
+
+    public void findUserLogin(){
+        User userFind=new User();
+        userFind.setUserName(getUsername());
+        this.userList=serviceUserImpl.findUser(userFind);
+    }
+    public void addUserLogin(){
+
+        serviceUserImpl.addUser(this.userAdd);
+
+        clearAddUser();
+        this.setMensaje("Usuario agregado");
+    }
+
+    public void clearAddUser(){
+        this.userAdd.setUserName("");
+        this.userAdd.setPassword("");
+        this.userAdd.setRol(0);
+    }
+
+    public void updateUserLogin(){
+        serviceUserImpl.updateUSer(this.userLogin);
+
     }
 
 

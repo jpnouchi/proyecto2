@@ -1,6 +1,7 @@
 package com.dev.util;
 
 import java.io.*;
+import java.net.URL;
 
 /**
  * Created with IntelliJ IDEA.
@@ -67,4 +68,12 @@ public class Util {
 
         return ((int)(Math.random()*10)%2);
     }
-}
+
+    public static InputStream loadImage(String ruta){
+
+        ClassLoader classloader=null;
+        classloader= Thread.currentThread().getContextClassLoader();
+        InputStream input=null;
+        input=classloader.getResourceAsStream(ruta);
+        return input;
+    }}
