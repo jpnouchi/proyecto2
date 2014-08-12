@@ -309,6 +309,9 @@ public class UserController  implements Serializable{
 
         clearAddUser();
         this.setMensaje("Usuario agregado");
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        context.addMessage(null, new FacesMessage("Exitoso",  "Usuario agregado") );
     }
 
     public void clearAddUser(){
@@ -319,6 +322,11 @@ public class UserController  implements Serializable{
 
     public void updateUserLogin(){
         serviceUserImpl.updateUSer(this.userLogin);
+
+    }
+
+    public void deleteUserLogin(){
+        serviceUserImpl.deleteUser(this.userLogin);
 
     }
 

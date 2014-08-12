@@ -82,6 +82,8 @@
                     </h:form>
                 </p:tab>
                 <p:tab id="idTabAdmin" title="Administracion" rendered="#{loginController.admin}" icon="ui-icon-wrench">
+                    <p:growl id="growl" showDetail="true" life="4000" sticky="false" />
+
                     <p:panel  header="Agregar Usuarios" style="width: 600;">
                         <p:panelGrid id="panelAddUser" columns="2" cellpadding="2">
                             <h:outputLabel value="Nombre de Usuario:"/>
@@ -95,7 +97,7 @@
                             </p:selectOneMenu>
                         </p:panelGrid>
                         <p:commandButton value="Agregar" action="#{userController.addUserLogin}"
-                                         update="usersLogin,panelAddUser"  oncomplete="userDialogAdmin.show()"/>
+                                         update="usersLogin,panelAddUser,growl"/>
                     </p:panel>
 
                     <p:panel  header="Busqueda de Usuarios" style="width: 600;">
@@ -121,6 +123,11 @@
 
                             <p:column id="idColumUpdate3" style="width:4%">
                                 <p:commandButton id="selectButton3" update=":form:displayLogin" oncomplete="userDialogLogin.show()" icon="ui-icon-wrench" title="Modal Panel ">
+                                    <f:setPropertyActionListener value="#{user}" target="#{userController.userLogin}" />
+                                </p:commandButton>
+                            </p:column>
+                            <p:column id="idColumDelete" style="width:4%">
+                                <p:commandButton id="selectButton4" update=":form:displayLogin" oncomplete="userDialogLogin.show()" icon="ui-icon-wrench" title="Modal Panel ">
                                     <f:setPropertyActionListener value="#{user}" target="#{userController.userLogin}" />
                                 </p:commandButton>
                             </p:column>
@@ -181,7 +188,7 @@
 
             <p:dialog id="dialogAdmin" header="Mensaje" widgetVar="userDialogAdmin" resizable="false"
                       showEffect="fade" hideEffect="explode" appendToBody="true">
-                <p:panelGrid columns="1" cellpadding="4" style="border: none;margin:0 auto;">
+                <p:panelGrid id="displayAdmin" columns="1" cellpadding="4" style="margin:0 auto;">
                     <h:outputText value="#{userController.mensaje}"/>
                 </p:panelGrid>
 

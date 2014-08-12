@@ -241,4 +241,12 @@
             </if>
         </where>
     </select>
+
+    <delete id="deleteUser" parameterType="user">
+        delete from user
+        <where>
+            idUser= #{idUser}
+        </where>
+
+    </delete>
 </mapper>
