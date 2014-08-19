@@ -28,6 +28,9 @@ public interface UsuarioMapper {
     public void deleteUser(User user);
     public void addUser(User user);
     public List<User> findUser(User user);
+    public void addHistorial(Historial historial);
+
+    public List<Historial> findHistorial(Filtro filtro);
 
 
 }

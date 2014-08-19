@@ -1,7 +1,9 @@
 package com.dev.util;
 
 import java.io.*;
-import java.net.URL;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -76,4 +78,48 @@ public class Util {
         InputStream input=null;
         input=classloader.getResourceAsStream(ruta);
         return input;
-    }}
+    }
+
+    private static SimpleDateFormat formatDateTime =new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    private static SimpleDateFormat formatDateInit =new SimpleDateFormat("yyyy-MM-dd 00:00:00");
+    private static SimpleDateFormat formatDateEnd =new SimpleDateFormat("yyyy-MM-dd 23:59:59");
+    private static SimpleDateFormat formatDate =new SimpleDateFormat("yyyy-MM-dd");
+
+
+    public static Date formatDateTimeInit(Date date){
+        Date dateInit=null;
+        try {
+            dateInit = formatDate.parse(formatDate.format(date)+" 00:00:00");
+        } catch (ParseException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return dateInit;
+    }
+
+    public static Date formatDateTimeEnd(Date date  ){
+        Date dateEnd=null;
+        try {
+            String fecha=formatDate.format(date);
+            dateEnd = formatDateTime.parse(fecha+" 23:59:59");
+        } catch (ParseException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return dateEnd;
+    }
+
+    public static String formatDate(Date date ){
+        return formatDateTime.format(date);
+    }
+
+    public static Date parseDate(String source ){
+           Date date=null;
+        try {
+            date=formatDateTime.parse(source);
+        } catch (ParseException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+        return date;
+    }
+
+
+}

@@ -1,9 +1,7 @@
 package com.dev.controllers;
 
-import com.dev.domain.model.Filtro;
-import com.dev.domain.model.User;
-import com.dev.domain.model.Usuario;
-import com.dev.domain.model.UsuarioDetalle;
+import com.dev.domain.model.*;
+import com.dev.services.ServiceHistorial;
 import com.dev.services.ServiceUser;
 import com.dev.services.ServiceUsuario;
 import com.dev.services.UserBo;
@@ -26,6 +24,7 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -46,6 +45,9 @@ public class UserController  implements Serializable{
     @Autowired
     private ServiceUser serviceUserImpl;
 
+    @Autowired
+    private ServiceHistorial serviceHistorialImpl;
+
     private String nameUser;
 
     private String paternoUser;
@@ -62,6 +64,27 @@ public class UserController  implements Serializable{
     private User userLogin;
 
     private String mensaje;
+
+    private Date fechaInicio;
+
+    private Date fechaFin;
+
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
 
     public String getMensaje() {
         return mensaje;
@@ -85,9 +108,43 @@ public class UserController  implements Serializable{
 
     private String username;
 
+    private String namehistorial;
+
+    public String getNamehistorial() {
+        return namehistorial;
+    }
+
+    public void setNamehistorial(String namehistorial) {
+        this.namehistorial = namehistorial;
+    }
+
+
+
     Usuario usuario;
 
     Usuario usuarioInformacion;
+
+    List<Historial>  historialList;
+
+    Historial historial;
+
+
+
+    public List<Historial> getHistorialList() {
+        return historialList;
+    }
+
+    public void setHistorialList(List<Historial> historialList) {
+        this.historialList = historialList;
+    }
+
+    public Historial getHistorial() {
+        return historial;
+    }
+
+    public void setHistorial(Historial historial) {
+        this.historial = historial;
+    }
 
     public User getUserLogin() {
         return userLogin;
@@ -200,6 +257,8 @@ public class UserController  implements Serializable{
         this.userAdd=new User();
         this.userLogin=new User();
         this.userList=new ArrayList<User>();
+        this.historialList=new ArrayList<Historial>();
+        this.historial=new Historial();
         mensaje="";
 
     }
@@ -321,13 +380,32 @@ public class UserController  implements Serializable{
     }
 
     public void updateUserLogin(){
+        System.out.println(userLogin);
         serviceUserImpl.updateUSer(this.userLogin);
 
     }
 
     public void deleteUserLogin(){
+        System.out.println(userLogin);
         serviceUserImpl.deleteUser(this.userLogin);
 
+    }
+
+    public void findHistorial(){
+        Filtro filtro = new Filtro();
+        filtro.setNombre(filtro.addLike(getNamehistorial()));
+        if(this.fechaInicio!=null){
+            filtro.setFechaInicio(fechaInicio);
+            System.out.println(Util.formatDate(fechaInicio));
+
+        }
+        if(this.fechaFin!=null){
+            Date dateEnd=Util.formatDateTimeEnd(fechaFin);
+            filtro.setFechaFin(dateEnd);
+            System.out.println(Util.formatDate(dateEnd));
+
+        }
+        this.historialList=serviceHistorialImpl.findHistorial(filtro);
     }
 
 

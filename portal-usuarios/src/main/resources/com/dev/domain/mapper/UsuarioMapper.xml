@@ -199,11 +199,11 @@
         )
     </insert>
 
-    <update id="updateUSer" parameterType="user">
+    <update id="updateUser" parameterType="user">
 
         update user
         <set>
-            <if test="password != nul and password!=''">password=#{password},</if>
+            <if test="password != null and password!=''">password=#{password},</if>
             <if test="rol != null">rol=#{rol}</if>
         </set>
         <where>
@@ -249,4 +249,50 @@
         </where>
 
     </delete>
+
+    <insert id="addHistorial" parameterType="historial" >
+        INSERT INTO historial (
+         iduser
+        ,name
+        ,fecha
+        ,ipAddress
+        )
+        values
+        (
+          #{iduser}
+         ,#{name}
+         ,#{fecha}
+         ,#{ipAddress}
+        )
+    </insert>
+
+    <select id="findHistorial"  fetchSize="10"  resultMap="resultHistorial" parameterType="filtro">
+        select	idHistorial
+        iduser
+        ,name
+        ,fecha
+        ,ipAddress
+        from	historial
+        <where>
+            <if test=" nombre!=null and nombre!='' ">
+                name like #{nombre}
+            </if>
+
+            <if test=" fechaInicio!=null and fechaInicio!='' ">
+               and  <![CDATA[fecha >= #{fechaInicio}]]>
+            </if>
+
+            <if test=" fechaFin!=null and fechaFin!='' ">
+              and   <![CDATA[fecha <= #{fechaFin}]]>
+            </if>
+        </where>
+    </select>
+
+    <resultMap id="resultHistorial" type="historial">
+        <result property="idHistorial" column="idHistorial"/>
+        <result property="iduser" column="iduser"/>
+        <result property="name" column="name"/>
+        <result property="fecha" column="fecha"/>
+        <result property="ipAddress" column="ipAddress"/>
+    </resultMap>
 </mapper>

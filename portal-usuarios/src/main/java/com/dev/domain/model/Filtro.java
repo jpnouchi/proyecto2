@@ -3,6 +3,8 @@ package com.dev.domain.model;
 import org.apache.commons.lang.StringUtils;
 import org.apache.ibatis.type.Alias;
 
+import java.util.Date;
+
 /**
  * Created with IntelliJ IDEA.
  * User: jpnouchi
@@ -15,6 +17,24 @@ public class Filtro extends BaseObject{
     private String nombre;
     private String apellidoPaterno;
     private String apellidoMaterno;
+    private Date fechaInicio;
+    private Date fechaFin;
+
+    public Date getFechaInicio() {
+        return fechaInicio;
+    }
+
+    public void setFechaInicio(Date fechaInicio) {
+        this.fechaInicio = fechaInicio;
+    }
+
+    public Date getFechaFin() {
+        return fechaFin;
+    }
+
+    public void setFechaFin(Date fechaFin) {
+        this.fechaFin = fechaFin;
+    }
 
     public String getApellidoPaterno() {
         return apellidoPaterno;

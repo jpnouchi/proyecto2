@@ -2,9 +2,12 @@ package com.dev.test;
 
 import com.dev.domain.mapper.UsuarioMapper;
 import com.dev.domain.model.Filtro;
+import com.dev.domain.model.Historial;
 import com.dev.domain.model.Usuario;
 import com.dev.domain.model.UsuarioDetalle;
+import com.dev.services.ServiceHistorial;
 import com.dev.services.ServiceUsuario;
+import com.dev.util.Util;
 import junit.framework.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -13,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.io.InputStream;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -49,6 +53,7 @@ public class UsuarioTest {
         System.out.println(usuarioList);
         Assert.assertNotNull(usuarioList);
         //Assert.assertEquals(1, controlList.size());
+
     }
 
     @Test
@@ -84,5 +89,23 @@ public class UsuarioTest {
 
         Usuario usuario=serviceUsuarioImpl.getUsuarioInformacion(1);
         System.out.println(usuario);
+
+    }
+
+    @Autowired
+    private ServiceHistorial serviceHistorialImpl;
+    @Test
+    public void getListHistorial(){
+        List<Historial>  historialList=null;
+        Filtro filtrohis=new Filtro();
+        Date init=Util.parseDate("2014-08-03 00:00:00");
+        Date end=Util.parseDate("2014-08-15 23:59:59");
+        filtrohis.setFechaInicio(init);
+        //filtrohis.setFechaFin(end);
+        filtrohis.setFechaFin(end);
+        historialList=serviceHistorialImpl.findHistorial(filtrohis);
+        if(historialList!=null){
+            System.out.println(historialList.size());
+        }
     }
 }

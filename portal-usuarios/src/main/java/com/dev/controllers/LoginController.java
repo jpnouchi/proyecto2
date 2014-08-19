@@ -1,6 +1,8 @@
 package com.dev.controllers;
 
+import com.dev.domain.model.Historial;
 import com.dev.domain.model.User;
+import com.dev.services.ServiceHistorial;
 import com.dev.services.ServiceUser;
 import com.dev.util.Util;
 import org.primefaces.model.DefaultStreamedContent;
@@ -11,7 +13,9 @@ import org.springframework.stereotype.Component;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.
@@ -106,6 +110,10 @@ public class LoginController  implements Serializable{
         return (user!=null)?true:false;
 
     }
+
+    @Autowired
+    private ServiceHistorial serviceHistorialImpl;
+
     public String login()
     {
 
@@ -114,6 +122,17 @@ public class LoginController  implements Serializable{
         {
             admin = (user.getRol()==1)?true:false;
             //admin=(("admin".equalsIgnoreCase(getUsername())?true:false));
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            String ipAddress = request.getHeader("X-Forwarded-For");
+            if (ipAddress == null) {
+                ipAddress = request.getRemoteAddr();
+            }
+            Historial historial=new Historial();
+            historial.setFecha(new Date());
+            historial.setIduser(user.getIdUser());
+            historial.setName(user.getUserName());
+            historial.setIpAddress(ipAddress);
+            serviceHistorialImpl.addHistorial(historial);
             return "home?faces-redirect=true";
 
         }else{
