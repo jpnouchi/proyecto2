@@ -133,7 +133,10 @@ public class LoginController  implements Serializable{
             historial.setName(user.getUserName());
             historial.setIpAddress(ipAddress);
             serviceHistorialImpl.addHistorial(historial);
-            return "home?faces-redirect=true";
+            //return "home?faces-redirect=true";
+            System.out.println("admin "+admin);
+            return "home";
+
 
         }else{
 

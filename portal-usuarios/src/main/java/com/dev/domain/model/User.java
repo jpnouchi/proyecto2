@@ -14,6 +14,8 @@ public class User extends BaseObject{
     private int idUser;
     private String userName;
     private String password;
+    private int rol;
+
 
     public int getRol() {
         return rol;
@@ -22,9 +24,6 @@ public class User extends BaseObject{
     public void setRol(int rol) {
         this.rol = rol;
     }
-
-    private int rol;
-
 
 
     public int getIdUser() {

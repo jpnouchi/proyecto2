@@ -20,16 +20,12 @@
                     <p:panelGrid columns="2" cellpadding="2" styleClass="ui-panel-titlebar-icon ui-corner-all ">
                         <h:outputLabel styleClass="ui-corner-all" value="Usuario"/>
                         <h:outputLabel styleClass="ui-corner-all" value="#{loginController.username}"/>
-
                     </p:panelGrid>
-
-
                 </f:facet>
 
             </p:panel>
             <p:tabView id="idTabView">
                 <p:tab id="idtabBusqueda" title="Busqueda Personas" icon="ui-icon-search">
-                    <h:form id="formBusqueda" style="width: 600;">
                     <p:panel header="Busqueda de Personas" style="width: 600;">
                         <p:panelGrid columns="2" cellpadding="2">
                             <h:outputLabel value="Nombre :"/>
@@ -40,7 +36,7 @@
                             <p:inputText value="#{userController.maternoUser}" label="LastName2"/>
                         </p:panelGrid>
                         <p:commandButton value="Buscar" action="#{userController.serchUser}"
-                                         update="users"  />
+                                         update=":form" />
                     </p:panel>
 
                     <p:dataTable id="users" var="user"
@@ -76,13 +72,11 @@
                         </p:column>
 
                     </p:dataTable>
-                    </h:form>
                 </p:tab>
-
                 <p:tab id="idTabAdmin" title="Administracion" rendered="#{loginController.admin}" icon="ui-icon-wrench">
                     <p:growl id="growl" showDetail="true" life="4000" sticky="false" />
 
-                    <p:panel  header="Agregar Usuarios" style="width: 600;">
+                    <p:panel  header="Agregar Usuarios" style="width: 600;" closable="true" closeSpeed="500">
                         <p:panelGrid id="panelAddUser" columns="2" cellpadding="2">
                             <h:outputLabel value="Nombre de Usuario:"/>
                             <p:inputText value="#{userController.userAdd.userName}" />
